@@ -3,11 +3,12 @@
 /* Black and white. Crayon colour only with meaning (see DESIGN.md). */
 :root {
   color-scheme: light dark;
-  --page: #FFFFFF; --ink: #000000; --muted: #4D4D4D; --line: #8C8C8C;
+  --page: #FFFFFF; --ink: #000000; --muted: #4D4D4D; --line: #8C8C8C; --tape: #D2D2D2;
   --yellow: #FFE066; --blue: #9FCBFF; --green: #A7E3A0; --crayon-ink: #111111;
   --font: "Atkinson Hyperlegible Mono", ui-monospace, "Courier New", monospace;
   --rule: 2px solid var(--ink);
   --photo-dim: 1;
+  --pad: max(16px, env(safe-area-inset-left));
   font: 400 112.5%/1.55 var(--font);
   color: var(--ink);
   background: var(--page);
@@ -15,73 +16,105 @@
   -webkit-text-size-adjust: 100%;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --page: #000000; --ink: #FFFFFF; --muted: #B8B8B8; --line: #767676; --photo-dim: .5; }
+  :root { --page: #000000; --ink: #FFFFFF; --muted: #B8B8B8; --line: #767676; --tape: #5A5A5A; --photo-dim: .8; }
 }
+@media (min-width: 600px) { :root { --pad: max(24px, env(safe-area-inset-left)); } }
 
 * { box-sizing: border-box; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
-           max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
-}
-@media (min-width: 600px) {
-  body { padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right))
-                  max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left)); }
-}
+body { margin: 0; overflow-x: hidden; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-
-/* Decorative photo. Grayscale already; the panel keeps text readable on any image. */
-.bg {
-  position: fixed; inset: 0; z-index: -1;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) brightness(var(--photo-dim));
-  background: var(--page);
-}
-
 .skip { position: absolute; z-index: 10; top: -100px; left: 8px; padding: 12px; color: var(--ink); background: var(--page); border: var(--rule); }
 .skip:focus { top: 8px; }
 
-.panel {
-  width: 100%;
-  max-width: 560px;
-  padding: 24px 16px;
-  color: var(--ink);
-  background: var(--page);
-  border: var(--rule);
-}
-@media (min-width: 600px) { .panel { padding: 32px 24px; } }
-
 h1, h2, h3, p { margin: 0 0 16px; overflow-wrap: anywhere; }
-h1 { font-size: 1.75rem; line-height: 1.25; font-weight: 700; }
-h2 { font-size: 1.25rem; line-height: 1.35; font-weight: 700; }
+h2 { font-size: 1.25rem; line-height: 1.35; font-weight: 700; padding-top: 16px; border-top: var(--rule); }
 a { color: var(--ink); text-underline-offset: 4px; }
 
-/* Wordmark: "let's simplify" with the i slipped to the end and a dot left behind.
-   Monospace, so ch units place the correction exactly under the dot (col 9) and the i (col 12). */
-h1.mark { margin: 0 0 24px; font-size: clamp(1.5rem, 9.6vw, 3.5rem); line-height: 1.2; letter-spacing: 0; }
-h1.mark:last-child { margin-bottom: 0; }
-.mark a { position: relative; display: inline-block; padding-bottom: .75em; text-decoration: none; white-space: nowrap; }
+/* Hero: the wordmark fills the screen. */
+.hero {
+  min-height: 55vh; min-height: 55dvh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: max(24px, env(safe-area-inset-top)) var(--pad) 24px;
+}
+h1.mark {
+  margin: 0;
+  font-size: min(calc((100vw - 2 * var(--pad)) / 7.9), 11rem);
+  line-height: 1.1; font-weight: 700; letter-spacing: 0;
+}
+.mark a { display: inline-block; text-decoration: none; white-space: nowrap; }
+
+/* "let's simplify" slipped: the i and the dot have swapped places. Both sit on
+   yellow crayon. Monospace, so 3ch is exactly the distance between them. */
 .mark mark {
+  display: inline-block;
   color: var(--crayon-ink);
   background-color: var(--yellow);
   background-image: repeating-linear-gradient(115deg, rgb(255 255 255 / 22%) 0 1.5px, transparent 1.5px 4px, rgb(0 0 0 / 5%) 4px 5px, transparent 5px 7px);
   border-radius: 2px 3px 2px 4px;
 }
-.fix { position: absolute; left: 8ch; bottom: 0; width: 4ch; height: .72em; overflow: visible; fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-.fix path { vector-effect: non-scaling-stroke; }
+/* Stumbles a few times, lands on "letsimplify." for a beat, then settles on the
+   domain. Runs once, about 4 seconds, never faster than two jumps a second,
+   and not at all when the device asks for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .mark .dot { animation: dot 4.4s .3s steps(1, end) 1 both; }
+  .mark .eye { animation: eye 4.4s .3s steps(1, end) 1 both; }
+}
+@keyframes dot {
+  0%         { transform: translateX(0); }
+  11.4%      { transform: translateX(3ch); }
+  22.7%      { transform: translateX(0); }
+  31.8%      { transform: translateX(3ch); }
+  40.9%      { transform: translateX(0); }
+  50%        { transform: translateX(3ch); }
+  77.3%, 100% { transform: translateX(0); }
+}
+@keyframes eye {
+  0%         { transform: translateX(0); }
+  11.4%      { transform: translateX(-3ch); }
+  22.7%      { transform: translateX(0); }
+  31.8%      { transform: translateX(-3ch); }
+  40.9%      { transform: translateX(0); }
+  50%        { transform: translateX(-3ch); }
+  77.3%, 100% { transform: translateX(0); }
+}
+
+/* Taped-on prints: decorative photos, always grayscale, no text on top of them. */
+.prints {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+  gap: 32px 24px; padding: 24px var(--pad) 48px;
+}
+.print {
+  position: relative; margin: 0;
+  width: min(100%, 320px);
+  padding: 8px 8px 24px;
+  background: var(--page);
+  border: var(--rule);
+  transform: rotate(var(--tilt, 0deg));
+}
+.print:nth-child(1) { --tilt: -2deg; }
+.print:nth-child(2) { --tilt: 1.5deg; margin-top: 24px; }
+.print:nth-child(3) { --tilt: -1deg; }
+.print img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--line); filter: grayscale(1) brightness(var(--photo-dim)); }
+.print::before {
+  content: ""; position: absolute; top: -14px; left: 50%; width: 88px; height: 26px;
+  margin-left: -44px; transform: rotate(-3deg);
+  background-color: var(--tape);
+  background-image: repeating-linear-gradient(115deg, rgb(255 255 255 / 25%) 0 1.5px, transparent 1.5px 4px);
+  border: 1px solid var(--line);
+}
+.print:nth-child(2)::before { transform: rotate(4deg); }
+
+/* Sections: one column, rule on top. Empty until the founder supplies copy. */
+main { max-width: 592px; margin: 0 auto; padding: 0 var(--pad); }
+section:not(:empty) { padding: 0 0 32px; }
+footer { max-width: 592px; margin: 0 auto; padding: 0 var(--pad) max(24px, env(safe-area-inset-bottom)); }
+
+/* Draft view: open /#draft to see where each piece of copy will go. */
+html:has(#draft:target) [data-slot] { min-height: 120px; margin-bottom: 24px; border: 2px dashed var(--line); }
+html:has(#draft:target) [data-slot]::before { content: attr(data-slot) " · awaiting copy"; display: block; padding: 8px 12px; color: var(--muted); font-size: .875rem; }
 
 @media (forced-colors: active) {
-  .bg { display: none; }
   .mark mark { background: Mark; color: MarkText; }
-  .fix { stroke: CanvasText; }
+  .print { border-color: CanvasText; }
 }
-@media print {
-  .bg, .skip { display: none; }
-  .panel { border: 0; }
-}
+@media print { .prints, .skip { display: none; } }

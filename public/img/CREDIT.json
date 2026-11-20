@@ -1,8 +1,26 @@
-{
-  "title": "File:Monochrome road in hills (Unsplash).jpg",
-  "source": "https://commons.wikimedia.org/wiki/File:Monochrome_road_in_hills_(Unsplash).jpg",
-  "artist": "Jose Murillo jcmu",
-  "license": "CC0",
-  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "note": "Converted to grayscale and resized. Public domain / CC0 only, so no attribution is required."
-}
+[
+  {
+    "slot": 1,
+    "title": "File:Dell Inspiron tablet laptop teardown.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Dell_Inspiron_tablet_laptop_teardown.jpg",
+    "artist": "Gregory Karastergios",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+    "slot": 2,
+    "title": "File:Primed and ready forces throughout Atlantic Trident 25 (9138194).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Primed_and_ready_forces_throughout_Atlantic_Trident_25_(9138194).jpg",
+    "artist": "U.S. Air Force photo by Senior Airman Ashley Talley",
+    "license": "Public domain",
+    "license_url": ""
+  },
+  {
+    "slot": 3,
+    "title": "File:Hacker repairs a computer - Linux Day in Torino 2022.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hacker_repairs_a_computer_-_Linux_Day_in_Torino_2022.jpg",
+    "artist": "EnricoCastelli",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  }
+]

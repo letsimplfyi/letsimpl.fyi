@@ -42,9 +42,9 @@ https://github.com/letsimplfyi.
   embody it.
 - **No walls.** No paywalls, logins, cookie banners, trackers, analytics or
   third-party requests. Fonts and assets are self-hosted.
-  **One approved exception, on principle (see Open data):** `public/js/bg.js`
-  may fetch a public-domain background photo live from Wikimedia Commons. It
-  is an enhancement only: the page
+  **One approved exception, on principle (see Open data):** `public/js/prints.js`
+  may fetch public-domain photos live from Wikimedia Commons (one API request
+  per session). It is an enhancement only: every print
   ships a committed fallback photo and must look right when JS is off, the
   visitor is offline or Commons is down. The CSP in `public/_headers` allows
   only that host. Do not add any other third-party request.
@@ -74,9 +74,9 @@ public/              exactly what Cloudflare Pages serves (no build step)
   favicon.svg
   _headers           CSP and caching
   fonts/             self-hosted WOFF2 + OFL notice
-  img/               fallback photo (grayscale WebP) + CREDIT.json
-  js/bg.js           optional live Commons background
-tools/wallpaper.py   one-off: picks a public-domain photo, writes public/img/
+  img/               fallback prints (grayscale WebP) + CREDIT.json
+  js/prints.js       optional live Commons photos for the prints
+tools/photos.py      one-off: builds fallback prints + data-pool from its pools
 DESIGN.md            design and brand book
 AGENTS.md            this file
 LICENSE              AGPL-3.0
@@ -85,9 +85,11 @@ LICENSE              AGPL-3.0
 Keep it flat. Add a file only when there is a reason. Cloudflare Pages
 settings: build command `exit 0`, output directory `public`.
 
-Regenerate the fallback photo with
-`nix shell nixpkgs#imagemagick nixpkgs#python3 -c python3 tools/wallpaper.py`
-(`--list` shows candidates, `--title "File:..."` pins one).
+The photo pools live in `tools/photos.py` (public domain / CC0 only; it refuses
+anything else). Edit them, then run
+`nix shell nixpkgs#imagemagick nixpkgs#python3 -c python3 tools/photos.py`
+to rebuild the fallbacks and the `data-pool` attributes in `index.html`.
+Be gentle with Commons: it rate-limits bursts.
 
 ## Working agreements
 

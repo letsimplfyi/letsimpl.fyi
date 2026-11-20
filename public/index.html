@@ -11,23 +11,58 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/atkinson-hyperlegible-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
-<script src="/js/bg.js" defer></script>
+<script src="/js/prints.js" defer></script>
 </head>
 <body>
-<img class="bg" src="/img/bg-1280.webp"
-     srcset="/img/bg-640.webp 640w, /img/bg-1280.webp 1280w, /img/bg-1920.webp 1920w, /img/bg-2560.webp 2560w"
-     sizes="100vw" alt="" aria-hidden="true" decoding="async" fetchpriority="high">
+<span id="draft"></span>
 <a class="skip" href="#main">Skip to content</a>
-<main id="main" class="panel">
+
+<header class="hero">
   <h1 class="mark">
     <a href="/" aria-label="letsimpl.fyi">
-      <span aria-hidden="true">letsimpl<mark>.</mark>fy<mark>i</mark></span>
-      <svg class="fix" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path d="M88 2 C 90 42, 14 44, 12.5 8 M12.5 8 L4 22 M12.5 8 L23 20" />
-      </svg>
+      <span aria-hidden="true">letsimpl<mark class="dot">.</mark>fy<mark class="eye">i</mark></span>
     </a>
   </h1>
-  <!-- COPY: home page text (founder). Nothing is written here until it is supplied and approved. -->
+  <!-- COPY: hero line / acknowledgement of neuro-atypicality (founder) -->
+</header>
+
+<div class="prints" aria-hidden="true">
+  <!-- PRINTS:start -->
+  <figure class="print">
+    <img src="/img/print-1-960.webp" srcset="/img/print-1-480.webp 480w, /img/print-1-960.webp 960w"
+         sizes="320px" width="960" height="720" alt="" decoding="async" loading="eager" data-pool="File:Dell Inspiron tablet laptop teardown.jpg|File:Repair tool kit.jpg|File:Screwdrivers on a table.JPG">
+  </figure>
+  <figure class="print">
+    <img src="/img/print-2-960.webp" srcset="/img/print-2-480.webp 480w, /img/print-2-960.webp 960w"
+         sizes="320px" width="960" height="720" alt="" decoding="async" loading="eager" data-pool="File:Primed and ready forces throughout Atlantic Trident 25 (9138194).jpg|File:Circuit board after manual etching.jpg|File:DEC System Building Block 0107942 component side.jpg|File:Close-up of a VHS Player Circuit Board.jpg">
+  </figure>
+  <figure class="print">
+    <img src="/img/print-3-960.webp" srcset="/img/print-3-480.webp 480w, /img/print-3-960.webp 960w"
+         sizes="320px" width="960" height="720" alt="" decoding="async" loading="eager" data-pool="File:Hacker repairs a computer - Linux Day in Torino 2022.jpg|File:Happylab Makerspace.jpg|File:Oxfordshire county library makerspace.jpg|File:Witten Zentralbibliothek Makerspace.jpg">
+  </figure>
+  <!-- PRINTS:end -->
+</div>
+
+<main id="main">
+  <section id="goals" data-slot="Goals">
+    <!-- COPY: goals (founder) -->
+  </section>
+  <section id="mission" data-slot="Mission">
+    <!-- COPY: mission (founder) -->
+  </section>
+  <section id="values" data-slot="Values">
+    <!-- COPY: values (founder) -->
+  </section>
+  <section id="projects" data-slot="Projects">
+    <!-- COPY: projects (founder). Each links out in blue crayon. -->
+  </section>
+  <section id="community" data-slot="Community">
+    <!-- COPY: community (founder) -->
+  </section>
 </main>
+
+<footer data-slot="Footer">
+  <!-- COPY: footer (founder) -->
+</footer>
 </body>
 </html>

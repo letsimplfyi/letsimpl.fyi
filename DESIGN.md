@@ -15,7 +15,8 @@ Peak simplicity. The site acknowledges the neuro-atypicality of its founder
 and works to reduce those challenges for readers. In practice that means:
 
 - One column, one idea at a time, predictable structure.
-- Nothing moves, flashes, pops up or asks for attention.
+- Nothing pops up or asks for attention. The one motion is the wordmark's
+  short, slow stumble (see Motion); everything else is still.
 - Plain high contrast, large type, generous space.
 - No hidden state: no menus that hide pages, no carousels, no accordions
   unless they are native and optional.
@@ -31,7 +32,7 @@ and works to reduce those challenges for readers. In practice that means:
 | Build | None. Hand-written HTML and one `styles.css` |
 | Third parties | None. No analytics, no CDNs, no external fonts |
 | Language | English first. Copy supplied by the founder only |
-| Motion | None by default |
+| Motion | One short wordmark animation, once, off for reduced motion. Nothing else |
 
 ## Crayon colour = meaning
 
@@ -40,7 +41,7 @@ Soft hand-coloured wax fills, used sparingly. Text on crayon is always
 
 | Crayon | Hex | Only for |
 | --- | --- | --- |
-| Yellow | `#FFE066` | The slip in the wordmark: the dot and the **i** that swapped places |
+| Yellow | `#FFE066` | The slip in the wordmark: the `.` and the `i` that swap places |
 | Blue | `#9FCBFF` | Outbound: links that leave the site (for example project repos) |
 | Green | `#A7E3A0` | The one forward action on a page, if there is one |
 
@@ -60,6 +61,8 @@ refined by the founder; do not add a crayon or reuse one for decoration.
 Controls and key rules use a 2px ink border. Square corners, except crayon
 fills which may have a very slight hand-cut radius (`2px 3px 2px 4px`). No
 shadows, gradients (other than the crayon hatch texture) or translucency.
+`--tape` (#D2D2D2 light, #5A5A5A dark) is a neutral grey used only for the
+masking tape on prints.
 
 ## Crayon texture
 
@@ -98,33 +101,37 @@ Fallback: `ui-monospace, "Courier New", monospace`.
 ## Wordmark
 
 "let's simplify" is written `letsimpl.fyi`: the **i** slid to the end and a
-dot was left in its place, as if typed by a dyslexic hand. Like the arrow in
-Amazon's a-to-z, the mark owns the slip instead of hiding it: the clumsiness
-is visible, and so is the recovery. Both slipped glyphs (`.` and `i`) sit on
-yellow crayon, and a hand-drawn ink arrow carries the **i** back to the dot.
+dot was left in its place, as if typed by a dyslexic hand. The mark owns the
+slip instead of hiding it: the clumsiness is visible, and so is the recovery.
 
-- Real text in the DOM (`aria-label="letsimpl.fyi"` on the link); the arrow is
-  an `aria-hidden` SVG. Still, never animated.
-- Set in the monospace so `ch` units line the arrow up under columns 9 and 12.
-- Ink arrow, not crayon: the yellow alone would fail 3:1 graphics contrast.
+- The `.` and the `i` sit on yellow crayon. They keep swapping places: at rest
+  it reads `letsimpl.fyi`, mid-stumble it reads `letsimplify.`, the word as it
+  should be, with a stray dot. The swap is 3ch, since the font is monospace.
+- It is the full-bleed hero: the wordmark is sized to fill the screen width.
+- Real text in the DOM (`aria-label="letsimpl.fyi"` on the link); the glyphs
+  are `aria-hidden` so the animation never reaches a screen reader.
 - It is the `h1` on the home page; the founder's copy follows it.
+- No arrow (too close to Amazon's a-to-z smile).
 
-## Background photo
+## Prints (photos)
 
-A decorative, always-grayscale photo sits behind a solid panel, so text never
-sits on the photo and contrast is guaranteed on any image.
+Decorative photos are taped-on prints: a 2px ink frame, a slight tilt, a strip
+of grey masking tape, always grayscale. No text ever sits on a photo, so
+contrast never depends on an image.
 
+- Subject: repair, electronics, tools, workshops, making; things the org is for.
 - Source: Wikimedia Commons, public domain or CC0 only (no attribution needed;
-  provenance is recorded in `public/img/CREDIT.json`).
-- Fallback is committed in four widths (640 / 1280 / 1920 / 2560, WebP) via
-  `srcset`. `js/bg.js` may swap in a fresh one live; see `AGENTS.md`.
-- Fixed `<img>` with `object-fit: cover`, not `background-attachment: fixed`
-  (broken on iOS). Dimmed to 50% in dark mode. Hidden in forced-colors and print.
-- Skipped when the browser asks to save data.
+  provenance is in `public/img/CREDIT.json`). Open data first; see `AGENTS.md`.
+- Each print has a committed fallback (WebP, 480 / 960 wide) in `srcset`.
+  `js/prints.js` may swap in a fresh live one per slot; see `AGENTS.md`.
+- Skipped when the browser asks to save data. Hidden in print.
 
 ## Layout
 
-- Single column, no sidebars, no sticky or fixed elements.
+- Hero, then prints, then one prose column (560px) of sections, then a footer.
+  No sidebars, no sticky or fixed elements.
+- Sections (goals, mission, values, projects, community) are empty slots until
+  the founder supplies copy. Open `/#draft` to see each slot outlined.
 - Home page shows peak simplicity: very little on screen, and a clear
   reading order that matches the DOM order.
 - Navigation, if any, is a plain list of real links at the top of the page,
@@ -133,9 +140,14 @@ sits on the photo and contrast is guaranteed on any image.
 
 ## Motion
 
-None by default. Hover/focus state changes take 120ms at most and carry no
-movement. If motion is ever added it must honour `prefers-reduced-motion`
-and never carry meaning on its own.
+The only motion is the wordmark stumble: the `.` and `i` swap places a few
+times and settle. Rules, so it cannot hurt anyone:
+
+- Runs once on load, about 4 seconds in total, then stops (nothing loops).
+- Never more than two jumps per second, on two small glyphs; no flashing.
+- Only under `prefers-reduced-motion: no-preference`. Otherwise fully static.
+- Animation carries no meaning on its own; the static page says the same.
+- Hover/focus state changes take 120ms at most and do not move anything.
 
 ## Accessibility
 
