@@ -40,7 +40,7 @@ Soft hand-coloured wax fills, used sparingly. Text on crayon is always
 
 | Crayon | Hex | Only for |
 | --- | --- | --- |
-| Yellow | `#FFE066` | To be assigned when the founder decides what it marks |
+| Yellow | `#FFE066` | The slip in the wordmark: the dot and the **i** that swapped places |
 | Blue | `#9FCBFF` | Outbound: links that leave the site (for example project repos) |
 | Green | `#A7E3A0` | The one forward action on a page, if there is one |
 
@@ -95,6 +95,33 @@ Fallback: `ui-monospace, "Courier New", monospace`.
 - Page titles carry a 2px ink rule beneath.
 - Links are underlined, ink-coloured, with 4px offset. Never colour-only.
 
+## Wordmark
+
+"let's simplify" is written `letsimpl.fyi`: the **i** slid to the end and a
+dot was left in its place, as if typed by a dyslexic hand. Like the arrow in
+Amazon's a-to-z, the mark owns the slip instead of hiding it: the clumsiness
+is visible, and so is the recovery. Both slipped glyphs (`.` and `i`) sit on
+yellow crayon, and a hand-drawn ink arrow carries the **i** back to the dot.
+
+- Real text in the DOM (`aria-label="letsimpl.fyi"` on the link); the arrow is
+  an `aria-hidden` SVG. Still, never animated.
+- Set in the monospace so `ch` units line the arrow up under columns 9 and 12.
+- Ink arrow, not crayon: the yellow alone would fail 3:1 graphics contrast.
+- It is the `h1` on the home page; the founder's copy follows it.
+
+## Background photo
+
+A decorative, always-grayscale photo sits behind a solid panel, so text never
+sits on the photo and contrast is guaranteed on any image.
+
+- Source: Wikimedia Commons, public domain or CC0 only (no attribution needed;
+  provenance is recorded in `public/img/CREDIT.json`).
+- Fallback is committed in four widths (640 / 1280 / 1920 / 2560, WebP) via
+  `srcset`. `js/bg.js` may swap in a fresh one live; see `AGENTS.md`.
+- Fixed `<img>` with `object-fit: cover`, not `background-attachment: fixed`
+  (broken on iOS). Dimmed to 50% in dark mode. Hidden in forced-colors and print.
+- Skipped when the browser asks to save data.
+
 ## Layout
 
 - Single column, no sidebars, no sticky or fixed elements.
@@ -127,7 +154,8 @@ Built for neuro-atypical readers first, so these are the floor, not the goal.
 
 ## Implementation notes
 
-- Files: `index.html`, `styles.css`, `fonts/`. No build step.
+- Files live in `public/`: `index.html`, `styles.css`, `fonts/`, `img/`, `js/`.
+  No build step.
 - Tokens as CSS custom properties on `:root`, with dark overrides under
   `@media (prefers-color-scheme: dark)`.
 - Hosting: any static host. Add `CNAME` only when the domain is set up.

@@ -42,6 +42,20 @@ https://github.com/letsimplfyi.
   embody it.
 - **No walls.** No paywalls, logins, cookie banners, trackers, analytics or
   third-party requests. Fonts and assets are self-hosted.
+  **One approved exception, on principle (see Open data):** `public/js/bg.js`
+  may fetch a public-domain background photo live from Wikimedia Commons. It
+  is an enhancement only: the page
+  ships a committed fallback photo and must look right when JS is off, the
+  visitor is offline or Commons is down. The CSP in `public/_headers` allows
+  only that host. Do not add any other third-party request.
+- **Open data first.** The org uses and promotes open, freely available data:
+  Wikidata, OpenStreetMap, Wikimedia Commons and the like. It encourages its
+  users and community to contribute to these commons, does not reinvent the
+  wheel, and works in coalition with them to close their gaps. So when the
+  site needs data or media, look to the commons first. Using Commons live for
+  the background is this principle in practice. Prefer public-domain or CC0
+  material, record provenance, and never scrape or hotlink closed sources.
+  Any wording about this on the site is the founder's to write.
 - **Offline-friendly and tiny.** Keep pages light. Everything the site needs
   ships in the repo.
 
@@ -54,15 +68,26 @@ without approval.
 ## Layout
 
 ```
-index.html     home page
-styles.css     tokens and components
-fonts/         self-hosted WOFF2 + OFL notices
-DESIGN.md      design and brand book
-AGENTS.md      this file
-LICENSE        AGPL-3.0
+public/              exactly what Cloudflare Pages serves (no build step)
+  index.html         home page
+  styles.css         tokens and components
+  favicon.svg
+  _headers           CSP and caching
+  fonts/             self-hosted WOFF2 + OFL notice
+  img/               fallback photo (grayscale WebP) + CREDIT.json
+  js/bg.js           optional live Commons background
+tools/wallpaper.py   one-off: picks a public-domain photo, writes public/img/
+DESIGN.md            design and brand book
+AGENTS.md            this file
+LICENSE              AGPL-3.0
 ```
 
-Keep it flat. Add a file only when there is a reason.
+Keep it flat. Add a file only when there is a reason. Cloudflare Pages
+settings: build command `exit 0`, output directory `public`.
+
+Regenerate the fallback photo with
+`nix shell nixpkgs#imagemagick nixpkgs#python3 -c python3 tools/wallpaper.py`
+(`--list` shows candidates, `--title "File:..."` pins one).
 
 ## Working agreements
 
