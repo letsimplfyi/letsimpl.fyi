@@ -1,0 +1,64 @@
+<!doctype html>
+<!--
+  Community page template.
+
+  Copy to public/community/<slug>/index.html for each community and fill every
+  COPY slot. Nothing here is published until it is copied into public/.
+  All words come from the founder, as everywhere on this site (see AGENTS.md).
+
+  Structure: a community belongs to a domain (for example automobiles,
+  electronics), optionally narrowed by sub-categories (for example one specific
+  vehicle), has an associated workshop that supports the repairs, and is made
+  of hacker spaces, experts, apprentices and service takers.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<title><!-- COPY: community name (founder) --></title>
+<!-- COPY: meta description (founder) -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<span id="draft"></span>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hero">
+  <p><a href="/">letsimpl.fyi</a></p>
+  <h1><!-- COPY: community name (founder) --></h1>
+  <!-- COPY: one-line summary (founder) -->
+</header>
+
+<main id="main">
+  <section data-slot="Domain">
+    <!-- COPY: domain, e.g. automobiles or electronics (founder) -->
+  </section>
+  <section data-slot="Sub-category">
+    <!-- COPY: sub-categories, e.g. a specific vehicle (founder). Tags go in ul.tags. -->
+  </section>
+  <section data-slot="Workshop">
+    <!-- COPY: the associated workshop that supports the repairs (founder) -->
+  </section>
+  <section data-slot="Hacker spaces">
+    <!-- COPY: (founder) -->
+  </section>
+  <section data-slot="Experts">
+    <!-- COPY: (founder) -->
+  </section>
+  <section data-slot="Apprentices">
+    <!-- COPY: (founder) -->
+  </section>
+  <section data-slot="Service takers">
+    <!-- COPY: (founder) -->
+  </section>
+</main>
+
+<footer data-slot="Footer">
+  <!-- COPY: footer (founder) -->
+</footer>
+</body>
+</html>

@@ -77,6 +77,7 @@ public/              exactly what Cloudflare Pages serves (no build step)
   img/               fallback prints (grayscale WebP) + CREDIT.json
   js/prints.js       optional live Commons photos for the prints
 tools/photos.py      one-off: builds fallback prints + data-pool from its pools
+templates/           page skeletons (not published); community.html for new communities
 DESIGN.md            design and brand book
 AGENTS.md            this file
 LICENSE              AGPL-3.0

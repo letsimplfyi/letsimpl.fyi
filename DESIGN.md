@@ -83,6 +83,7 @@ Fallback: `ui-monospace, "Courier New", monospace`.
 
 | Role | Size / line height |
 | --- | --- |
+| Hero line | 27 / 38 (1.5rem), under the wordmark |
 | Page title | 32 / 40 (1.75rem of an 18px root) |
 | Section heading | 22 / 30 |
 | Subheading | 18 / 28 |
@@ -148,6 +149,20 @@ times and settle. Rules, so it cannot hurt anyone:
 - Only under `prefers-reduced-motion: no-preference`. Otherwise fully static.
 - Animation carries no meaning on its own; the static page says the same.
 - Hover/focus state changes take 120ms at most and do not move anything.
+
+## Projects and tags
+
+Each project is a bordered card: name, the founder's description, outbound
+links, then tags. Tags are outlined chips (1px ink) taken verbatim from the
+project's GitHub topics; no colour. Outbound links use blue crayon plus a
+trailing arrow (colour never works alone). A category field is planned; the
+founder defines the categories.
+
+## Communities
+
+New communities start from `templates/community.html`: domain, sub-category,
+workshop, then hacker spaces, experts, apprentices and service takers.
+None exist yet.
 
 ## Accessibility
 
