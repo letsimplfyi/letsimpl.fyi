@@ -86,6 +86,25 @@ LICENSE              AGPL-3.0
 Keep it flat. Add a file only when there is a reason. Cloudflare Pages
 settings: build command `exit 0`, output directory `public`.
 
+## Deploying
+
+`.github/workflows/deploy.yml` checks every push and pull request with
+`sh tools/check.sh` (required files, broken links, 25 MiB file limit, only
+approved external hosts, CSP not loosened). A push to `main` that passes then
+publishes `public/` to the Cloudflare Pages project `letsimpl-fyi` (production
+environment, https://letsimpl.fyi). Nothing outside `public/` is published.
+Run the check locally before pushing: `sh tools/check.sh`.
+
+One-time setup (needs the founder's Cloudflare account; agents have no access):
+
+1. Create the project: `npx wrangler pages project create letsimpl-fyi --production-branch=main`
+2. Create an API token with *Account > Cloudflare Pages > Edit*.
+3. Store secrets (repo level, or once at org level `letsimplfyi` for all repos):
+   `gh secret set CLOUDFLARE_API_TOKEN -R letsimplfyi/letsimpl.fyi` and
+   `gh secret set CLOUDFLARE_ACCOUNT_ID -R letsimplfyi/letsimpl.fyi`
+4. In the Pages project, add the custom domain `letsimpl.fyi`.
+5. Run the workflow once (push to `main` or *Run workflow*).
+
 The photo pools live in `tools/photos.py` (public domain / CC0 only; it refuses
 anything else). Edit them, then run
 `nix shell nixpkgs#imagemagick nixpkgs#python3 -c python3 tools/photos.py`

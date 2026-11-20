@@ -1,0 +1,43 @@
+name: Deploy
+
+# Checks every push and pull request. Pushes to main publish public/ to
+# Cloudflare Pages (project "letsimpl-fyi", custom domain letsimpl.fyi).
+# Repository (or organisation) secrets needed: CLOUDFLARE_API_TOKEN
+# (Cloudflare Pages: Edit) and CLOUDFLARE_ACCOUNT_ID.
+# One-time setup is in AGENTS.md ("Deploying").
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: sh tools/check.sh
+
+  deploy:
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://letsimpl.fyi
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Only public/ is published; docs, tools and templates stay in the repo.
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=letsimpl-fyi --branch=main --commit-dirty=true
