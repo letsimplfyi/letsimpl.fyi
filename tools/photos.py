@@ -90,7 +90,7 @@ def build(slot, title):
 
 def figure(slot, pool):
     attr = "|".join(pool).replace("&", "&amp;").replace('"', "&quot;")
-    return (f'  <figure class="print">\n'
+    return (f'  <figure class="ls-print">\n'
             f'    <img src="/img/print-{slot}-960.webp" srcset="/img/print-{slot}-480.webp 480w, /img/print-{slot}-960.webp 960w"\n'
             f'         sizes="320px" width="960" height="720" alt="" decoding="async" loading="eager" data-pool="{attr}">\n'
             f'  </figure>')

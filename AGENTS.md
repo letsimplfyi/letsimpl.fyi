@@ -61,7 +61,7 @@ https://github.com/letsimplfyi.
 
 ## Design
 
-Follow `DESIGN.md`. It is the source of truth for colour, type, spacing,
+Follow https://brand.letsimpl.fyi (see `DESIGN.md`). It is the source of truth for colour, type, spacing,
 components and accessibility. Do not invent new colours, fonts or components
 without approval.
 

@@ -10,20 +10,23 @@
 <meta name="description" content="enough with all the complexities, letsimpl.fyi everyting.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/atkinson-hyperlegible-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/tokens/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
 <link rel="stylesheet" href="/styles.css">
 <script src="/js/prints.js" defer></script>
 </head>
 <body>
 <span id="draft"></span>
-<a class="skip" href="#main">Skip to content</a>
+<a class="ls-skip" href="#main">Skip to content</a>
 
 <header class="hero">
-  <h1 class="mark">
+  <h1 class="ls-mark ls-mark--animate">
     <a href="/" aria-label="letsimpl.fyi">
       <span aria-hidden="true">letsimpl<mark class="dot">.</mark>fy<mark class="eye">i</mark></span>
     </a>
   </h1>
-  <p class="lede">The world feels a whole lot complex with all it's moving parts. This is my effort to make it all a lot more simpler, together letsimpl.fyi</p>
+  <p class="lede ls-prose">The world feels a whole lot complex with all it's moving parts. This is my effort to make it all a lot more simpler, together letsimpl.fyi</p>
   <nav>
     <ul>
       <li><a href="#goals">Goals</a></li>
@@ -35,15 +38,15 @@
 
 <div class="prints" aria-hidden="true">
   <!-- PRINTS:start -->
-  <figure class="print">
+  <figure class="ls-print">
     <img src="/img/print-1-960.webp" srcset="/img/print-1-480.webp 480w, /img/print-1-960.webp 960w"
          sizes="320px" width="960" height="720" alt="" decoding="async" loading="eager" data-pool="File:Dell Inspiron tablet laptop teardown.jpg|File:Repair tool kit.jpg|File:Screwdrivers on a table.JPG">
   </figure>
-  <figure class="print">
+  <figure class="ls-print">
     <img src="/img/print-2-960.webp" srcset="/img/print-2-480.webp 480w, /img/print-2-960.webp 960w"
          sizes="320px" width="960" height="720" alt="" decoding="async" loading="eager" data-pool="File:Primed and ready forces throughout Atlantic Trident 25 (9138194).jpg|File:Circuit board after manual etching.jpg|File:DEC System Building Block 0107942 component side.jpg|File:Close-up of a VHS Player Circuit Board.jpg">
   </figure>
-  <figure class="print">
+  <figure class="ls-print">
     <img src="/img/print-3-960.webp" srcset="/img/print-3-480.webp 480w, /img/print-3-960.webp 960w"
          sizes="320px" width="960" height="720" alt="" decoding="async" loading="eager" data-pool="File:Hacker repairs a computer - Linux Day in Torino 2022.jpg|File:Happylab Makerspace.jpg|File:Oxfordshire county library makerspace.jpg|File:Witten Zentralbibliothek Makerspace.jpg">
   </figure>
@@ -53,7 +56,7 @@
 <main id="main">
   <section id="goals" data-slot="Goals">
     <h2>Goals</h2>
-    <ol type="a">
+    <ol type="a" class="ls-prose">
       <li>Educate. Use already available materials that's existing in multiple platforms fragmented into pieces and self learn and teach each other to use, diagnose and fix all items u own and use.</li>
       <li>Organise, Like minded individuals who are irked by all the complexities and are suffocated by the ways of this world.</li>
       <li>document. make as much as printed and digital archives, guidebooks, manuals hack books etc and a catalogue for all kinds of products that we can reclaim.</li>
@@ -61,7 +64,7 @@
   </section>
   <section id="mission" data-slot="Mission">
     <h2>Mission</h2>
-    <p>simpler world where tech need not be hostile and working against the interests of the users so that the companies that produce them can benifit off from it.</p>
+    <p class="ls-prose">simpler world where tech need not be hostile and working against the interests of the users so that the companies that produce them can benifit off from it.</p>
   </section>
   <section id="values" data-slot="Values">
     <!-- COPY: values (founder) -->
@@ -69,42 +72,42 @@
   <section id="projects" data-slot="Projects">
     <h2>Projects</h2>
     <!-- COPY: projects intro and categories (founder). Category = awaiting the founder's list. -->
-    <article class="project">
+    <article class="ls-card">
       <h3>chaikadi.fyi</h3>
-      <p>Offline-first PWA for a group tea break: pick, order once, split the bill. Peer-to-peer, no accounts. AGPL-3.0</p>
-      <ul class="links">
-        <li><a class="out" href="https://chaikadi.fyi">chaikadi.fyi</a></li>
-        <li><a class="out" href="https://github.com/tellmeY18/chaikadi.fyi">github.com/tellmeY18/chaikadi.fyi</a></li>
+      <p class="ls-prose">Offline-first PWA for a group tea break: pick, order once, split the bill. Peer-to-peer, no accounts. AGPL-3.0</p>
+      <ul class="ls-links">
+        <li><a class="ls-out" href="https://chaikadi.fyi">chaikadi.fyi</a></li>
+        <li><a class="ls-out" href="https://github.com/tellmeY18/chaikadi.fyi">github.com/tellmeY18/chaikadi.fyi</a></li>
       </ul>
-      <ul class="tags">
-        <li>offline-first</li>
-        <li>peerjs</li>
-        <li>preact</li>
-        <li>pwa</li>
-        <li>tea</li>
-        <li>webrtc</li>
+      <ul class="ls-tags">
+        <li class="ls-tag">offline-first</li>
+        <li class="ls-tag">peerjs</li>
+        <li class="ls-tag">preact</li>
+        <li class="ls-tag">pwa</li>
+        <li class="ls-tag">tea</li>
+        <li class="ls-tag">webrtc</li>
       </ul>
     </article>
-    <article class="project">
+    <article class="ls-card">
       <h3>eatsights</h3>
-      <p>Eatsights: open food data (menus, prices, availability) served as an API. Code AGPL-3.0-or-later, data CC0-1.0.</p>
-      <ul class="links">
-        <li><a class="out" href="https://eatsights.letsimpl.fyi">eatsights.letsimpl.fyi</a></li>
-        <li><a class="out" href="https://github.com/tellmeY18/eatsights">github.com/tellmeY18/eatsights</a></li>
+      <p class="ls-prose">Eatsights: open food data (menus, prices, availability) served as an API. Code AGPL-3.0-or-later, data CC0-1.0.</p>
+      <ul class="ls-links">
+        <li><a class="ls-out" href="https://eatsights.letsimpl.fyi">eatsights.letsimpl.fyi</a></li>
+        <li><a class="ls-out" href="https://github.com/tellmeY18/eatsights">github.com/tellmeY18/eatsights</a></li>
       </ul>
     </article>
-    <article class="project">
+    <article class="ls-card">
       <h3>containers_anywhere</h3>
-      <p>Containers Anywhere: lightweight cross-platform K3s appliances for local cloud-native workloads. Building toward verified disaster recovery.</p>
-      <ul class="links">
-        <li><a class="out" href="https://github.com/tellmeY18/containers_anywhere">github.com/tellmeY18/containers_anywhere</a></li>
+      <p class="ls-prose">Containers Anywhere: lightweight cross-platform K3s appliances for local cloud-native workloads. Building toward verified disaster recovery.</p>
+      <ul class="ls-links">
+        <li><a class="ls-out" href="https://github.com/tellmeY18/containers_anywhere">github.com/tellmeY18/containers_anywhere</a></li>
       </ul>
-      <ul class="tags">
-        <li>disaster-recovery</li>
-        <li>k3s</li>
-        <li>kubernetes</li>
-        <li>local-first</li>
-        <li>virtualization</li>
+      <ul class="ls-tags">
+        <li class="ls-tag">disaster-recovery</li>
+        <li class="ls-tag">k3s</li>
+        <li class="ls-tag">kubernetes</li>
+        <li class="ls-tag">local-first</li>
+        <li class="ls-tag">virtualization</li>
       </ul>
     </article>
   </section>

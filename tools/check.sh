@@ -8,7 +8,7 @@ fail=0
 bad() { echo "FAIL: $*" >&2; fail=1; }
 
 # Required files.
-for f in index.html styles.css favicon.svg _headers fonts/Atkinson-Hyperlegible-Mono.OFL.txt img/CREDIT.json; do
+for f in index.html styles.css tokens/tokens.css css/base.css css/components.css favicon.svg _headers fonts/Atkinson-Hyperlegible-Mono.OFL.txt img/CREDIT.json; do
   [ -f "public/$f" ] || bad "public/$f is missing"
 done
 
