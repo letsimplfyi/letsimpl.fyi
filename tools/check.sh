@@ -29,7 +29,7 @@ grep -q '<html lang="' public/index.html || bad "index.html has no lang attribut
 grep -q '<title>' public/index.html || bad "index.html has no title"
 
 # No third-party requests beyond the approved ones (see AGENTS.md).
-allowed='^(commons\.wikimedia\.org|upload\.wikimedia\.org|thumb\.wikimedia\.org|github\.com|chaikadi\.fyi|eatsights\.letsimpl\.fyi|letsimpl\.fyi|www\.w3\.org)$'
+allowed='^(commons\.wikimedia\.org|upload\.wikimedia\.org|thumb\.wikimedia\.org|github\.com|chaikadi\.fyi|commoner\.letsimpl\.fyi|eatsights\.letsimpl\.fyi|letsimpl\.fyi|www\.w3\.org)$'
 hosts=$(grep -rhoE --include='*.html' --include='*.css' --include='*.js' --include='*.svg' 'https?://[^"'"'"' )<>]+' public | sed -E 's#^https?://([^/:]+).*#\1#' | sort -u)
 for h in $hosts; do
   echo "$h" | grep -Eq "$allowed" || bad "unapproved external host: $h"
